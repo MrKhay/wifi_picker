@@ -33,17 +33,10 @@ Conventional Commits is a specification for adding human and machine-readable me
 
 ## Objectives
 
-- Create a pixel-perfect shopping app based on the Timbu Shop designs.**
-
-- All products must be fetched from the Timbu API. No Placeholder should be found in your app.
-- Have at least 20 Unique Products in your product list. They should be categorized.
-- Implement the feature of adding and removing products, wishlist or bookmark, checkout of order etc. based on your Timbu Shop design.
-- Provide a good shopping experience from start to the completion of an order.
-- Create an Orders history screen showing all the completed orders made on your Timbu shop. Add an icon on your home screen top bar that navigates to the order history screen. Come up with the design if not available.
-- The Orders history item when clicked must go to a details screen of that order and show details of that order.
-- The items in the order history screen and details should be cached in a database.
-- Ensure proper UI state management and handle errors properly.
-- Fix all noticeable issues.
+- Simplifies WiFi Credential Sharing: Allows users to connect to WiFi networks by tapping their NFC-enabled devices against a designated NFC tag.
+- Beautiful UI: Features an attractive and user-friendly interface.
+- Proper Error Handling: Ensures robust and seamless operation with appropriate error messages and handling.
+- Write WiFi Credentials to NFC Tags: Enables writing WiFi credentials to NFC tags for easy sharing.
 
 ## Acceptance Criteria
 
