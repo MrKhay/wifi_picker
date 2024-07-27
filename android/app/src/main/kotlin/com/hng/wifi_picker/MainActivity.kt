@@ -1,0 +1,5 @@
+package com.hng.wifi_picker
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity()
