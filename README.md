@@ -39,8 +39,6 @@ Conventional Commits is a specification for adding human and machine-readable me
 - Write WiFi Credentials to NFC Tags: Enables writing WiFi credentials to NFC tags for easy sharing.
 
 ## Acceptance Criteria
-
-- **No Third-party Dependencies**: Built without importing any third-party packages, plugins, or libraries. Only native functionalities and components are used.
 - **Intuitive and Adaptive UI**: User-friendly and intuitive interface, with clear labeling, easy navigation, and proper spacing.
 - **Proper README File**: Contains setup instructions, app screenshots, apk download link, etc.
 
