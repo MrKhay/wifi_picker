@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../features.dart';
+import 'mainscreen.dart';
 
 ///
 class HomeScreen extends ConsumerStatefulWidget {
@@ -43,6 +44,7 @@ class ProductsScreenState extends ConsumerState<HomeScreen> {
         ),
       ),
       backgroundColor: context.colorScheme.surface,
+      body: const Mainscreen(),
     );
   }
 }
