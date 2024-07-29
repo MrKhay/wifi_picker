@@ -4,9 +4,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../features.dart';
-import 'mainscreen.dart';
+import 'available_tags.dart';
+import 'write_nfc.dart';
 
 ///
 class HomeScreen extends ConsumerStatefulWidget {
@@ -18,33 +18,29 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 ///
 class ProductsScreenState extends ConsumerState<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+  int pageindex = 0;
+  List<Widget> pages = <Widget>[const AvailableTag(), const SavedTagsScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(
-        context: context,
-        title: kAppName,
-        elevation: 0,
-        backgroundColor: context.colorScheme.surface,
-        style: GoogleFonts.redressed(
-          textStyle: context.textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.w500,
-            color: context.colorScheme.primary,
-          ),
-        ),
-      ),
       backgroundColor: context.colorScheme.surface,
-      body: const Mainscreen(),
+      bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.green,
+          selectedItemColor: context.colorScheme.surface,
+          unselectedItemColor: context.colorScheme.primaryContainer,
+          currentIndex: pageindex,
+          onTap: (int index) {
+            setState(() {
+              pageindex = index;
+            });
+          },
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined), label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.bookmark_outline_rounded), label: 'Saved'),
+          ]),
+      body: pages[pageindex],
     );
   }
 }
