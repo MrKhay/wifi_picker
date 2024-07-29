@@ -12,10 +12,12 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.5.1
+  flutter_spinkit: ^5.2.1
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.2.1
   http: ^1.2.1
   ionicons: ^0.2.2
+  lottie: ^3.1.2
   observe_internet_connectivity: ^1.0.2
   riverpod_annotation: ^2.3.5 
   shared_preferences: ^2.2.3
@@ -37,6 +39,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
+    - 'assets/splash.json'
 
   
   
