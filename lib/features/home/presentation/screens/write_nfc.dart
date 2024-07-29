@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../features.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/text_font.dart';
 
@@ -45,18 +46,21 @@ class _WritenfcState extends State<Writenfc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      appBar: appBar(
+        context: context,
+        centerTitle: true,
+        title: 'Wifi Details',
+        style: context.textTheme.titleLarge?.copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      backgroundColor: context.colorScheme.surface,
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.fromLTRB(15, 40, 15, 5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('*Wifi Details*',
-                style: textfont(20, FontWeight.normal, Colors.black)),
-            const SizedBox(
-              height: 20,
-            ),
             Form(
                 key: _formkey,
                 child: Column(
@@ -109,7 +113,7 @@ class _WritenfcState extends State<Writenfc> {
                 },
                 width: MediaQuery.of(context).size.width,
                 height: 50,
-                text: 'Save to Nfc Tag')
+                text: 'Save')
           ],
         ),
       )),
