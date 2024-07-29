@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:wifi_picker/features/features.dart';
 import 'package:wifi_picker/theme/app_theme.dart';
 
+import 'features/home/presentation/screens/splash.dart';
+
 ///
 class WifiPickerApp extends StatelessWidget {
   ///
@@ -14,7 +16,7 @@ class WifiPickerApp extends StatelessWidget {
       title: kAppName,
       themeMode: ThemeMode.system,
       theme: lightTheme,
-      home: const HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }
