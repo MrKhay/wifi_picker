@@ -25,6 +25,7 @@ PreferredSizeWidget appBar({
   List<Widget>? actions,
   PreferredSizeWidget? bottom,
   bool? centerTitle,
+  bool showBottom = true,
   Color? backgroundColor,
   double? elevation,
   double? scrolledUnderElevation,
@@ -44,7 +45,7 @@ PreferredSizeWidget appBar({
             fontWeight: FontWeight.w600,
           ),
     ),
-    bottom: bottom ?? bottomDivider(context),
+    bottom: showBottom ? bottom ?? bottomDivider(context) : null,
     actions: actions,
     centerTitle: centerTitle,
   );
