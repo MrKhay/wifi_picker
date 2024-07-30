@@ -47,7 +47,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
       } else {
         if (mounted) {
           setState(() {
-            // supportsNfc = false;
+            supportsNfc = false;
           });
         }
       }
@@ -189,6 +189,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
                   style: context.textTheme.bodyMedium
                       ?.copyWith(letterSpacing: kGap_01),
                 )),
+                const SizedBox(height: kGap_3),
                 Center(
                   child: Stack(
                     alignment: Alignment.center,
@@ -215,6 +216,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
                     ],
                   ),
                 ),
+                const SizedBox(height: kGap_3),
               ],
             ),
           ),
@@ -230,6 +232,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
         Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.all(kGap_3),
+          margin: const EdgeInsets.all(kGap_2),
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
             color: Colors.grey.withOpacity(0.2),
