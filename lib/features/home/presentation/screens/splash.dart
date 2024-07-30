@@ -3,6 +3,8 @@ import 'package:lottie/lottie.dart';
 import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -17,7 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
     if (mounted) {
       await Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (BuildContext context) => HomeScreen()),
+        MaterialPageRoute(
+            builder: (BuildContext context) => const HomeScreen()),
       );
     }
   }
@@ -33,7 +36,8 @@ class _SplashScreenState extends State<SplashScreen> {
               fit: BoxFit.cover,
               repeat: false,
               onLoaded: (LottieComposition composition) {
-                Future.delayed(composition.duration + Duration(seconds: 3),
+                Future.delayed(
+                    composition.duration + const Duration(milliseconds: 500),
                     _navigateToHome);
               },
             ),

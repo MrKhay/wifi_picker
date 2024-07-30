@@ -1,122 +1,193 @@
 // ignore_for_file: inference_failure_on_function_invocation, public_member_api_docs
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:nfc_manager/nfc_manager.dart';
 
 import '../../../features.dart';
 import '../widgets/button_widget.dart';
-import '../widgets/text_font.dart';
 
-class Writenfc extends StatefulWidget {
-  const Writenfc({super.key});
+class WriteNfc extends StatefulWidget {
+  final NfcTag tag;
+  const WriteNfc({super.key, required this.tag});
 
   @override
-  State<Writenfc> createState() => _WritenfcState();
+  State<WriteNfc> createState() => _WriteNfcState();
 }
 
-class _WritenfcState extends State<Writenfc> {
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-  final TextEditingController securitycontroller = TextEditingController();
-  final TextEditingController namecontroller = TextEditingController();
-  final TextEditingController passwordcontroller = TextEditingController();
+class _WriteNfcState extends State<WriteNfc> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  String? securityType;
 
-  void showbox(BuildContext context) {
-    // ignore: discarded_futures
+  void showSuccessBox(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const CircleAvatar(
-                backgroundColor: Colors.lightGreen, child: Icon(Icons.wifi)),
-            content: const Text(
-                "You've have succefully connected to HNG Workspace Tag"),
-            actions: <Widget>[
-              Button(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                text: 'Done',
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              )
-            ],
-          );
-        });
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const CircleAvatar(
+            backgroundColor: Colors.lightGreen,
+            child: Icon(Icons.wifi),
+          ),
+          content: const Text('Data successfully written to tag'),
+          actions: <Widget>[
+            Button(
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              text: 'Done',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> writeWifiCredentials() async {
+    if (_formKey.currentState?.validate() ?? false) {
+      final String ssid = nameController.text;
+      final String password = passwordController.text;
+
+      // Encode WiFi credentials in the WiFi Simple Configuration format
+      final String wifiPayload = 'WIFI:S:$ssid;T:$securityType;P:$password;;';
+
+      // Convert the payload to bytes
+      final NdefMessage ndefMessage = NdefMessage(<NdefRecord>[
+        NdefRecord.createText(wifiPayload),
+      ]);
+
+      try {
+        // Start the NFC session
+
+        // Write to the NFC tag
+        final Ndef? ndef = Ndef.from(widget.tag);
+        if (ndef == null || !ndef.isWritable) {
+          context.showSnackBar('Tag is not compatible',
+              type: SnackBarType.error);
+          return;
+        }
+        await ndef.write(ndefMessage);
+        showSuccessBox(context);
+        triggerVibration();
+      } catch (e) {
+        // Handle the error
+        context.showSnackBar('Error writing to NFC tag: $e',
+            type: SnackBarType.error);
+      }
+    }
+  }
+
+  void triggerVibration() {
+    HapticFeedback.lightImpact();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: appBar(
         context: context,
         centerTitle: true,
-        title: 'Wifi Details',
+        title: kWifiDetails,
         style: context.textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.w500,
         ),
       ),
       backgroundColor: context.colorScheme.surface,
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 40, 15, 5),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Form(
-                key: _formkey,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(15, 40, 15, 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Form(
+                key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Security Type',
-                        style: textfont(15, FontWeight.normal, Colors.black)),
-                    TextFormField(
-                      controller: securitycontroller,
+                    Text('Security Type', style: context.textTheme.bodyLarge),
+                    const SizedBox(height: kGap_1),
+                    DropdownButtonFormField<String>(
+                      value: securityType,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          securityType = newValue;
+                        });
+                      },
+                      items: <String>['WPA', 'WEP', 'None']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
                       decoration: const InputDecoration(
-                          hintText: 'Placeholder',
-                          hintStyle: TextStyle(color: Colors.grey),
-                          border: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder()),
+                        hintText: 'Select WiFi security type',
+                        hintStyle: TextStyle(color: Colors.grey),
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(),
+                      ),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please select WiFi security type';
+                        }
+                        return null;
+                      },
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Text('Name',
-                        style: textfont(15, FontWeight.normal, Colors.black)),
+                    const SizedBox(height: kGap_2),
+                    Text('Name', style: context.textTheme.bodyLarge),
+                    const SizedBox(height: kGap_1),
                     TextFormField(
-                      controller: namecontroller,
+                      controller: nameController,
                       decoration: const InputDecoration(
-                          hintText: 'Placeholder',
-                          hintStyle: TextStyle(color: Colors.grey),
-                          border: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder()),
+                        hintText: 'Enter WiFi name',
+                        hintStyle: TextStyle(color: Colors.grey),
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(),
+                      ),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter WiFi name';
+                        }
+                        return null;
+                      },
                     ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Text('Password',
-                        style: textfont(15, FontWeight.normal, Colors.black)),
+                    const SizedBox(height: kGap_2),
+                    Text('Password', style: context.textTheme.bodyLarge),
+                    const SizedBox(height: kGap_1),
                     TextFormField(
-                      controller: passwordcontroller,
+                      controller: passwordController,
                       decoration: const InputDecoration(
-                          hintText: 'Placeholder',
-                          hintStyle: TextStyle(color: Colors.grey),
-                          border: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder()),
+                        hintText: 'Enter WiFi password',
+                        hintStyle: TextStyle(color: Colors.grey),
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(),
+                      ),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter WiFi password';
+                        }
+                        return null;
+                      },
                     ),
                   ],
-                )),
-            const SizedBox(
-              height: 35,
-            ),
-            Button(
-                onTap: () {
-                  showbox(context);
-                },
+                ),
+              ),
+              const SizedBox(height: kGap_4),
+              Button(
+                onTap: writeWifiCredentials,
                 width: MediaQuery.of(context).size.width,
                 height: 50,
-                text: 'Save')
-          ],
+                text: 'Save',
+              ),
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }

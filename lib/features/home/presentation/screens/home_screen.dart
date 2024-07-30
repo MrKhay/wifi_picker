@@ -4,10 +4,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wifi_picker/features/home/presentation/screens/welcome_pages.dart';
 import '../../../features.dart';
-import 'available_tags.dart';
-import 'write_nfc.dart';
+import 'available_tags_screen.dart';
 
 ///
 class HomeScreen extends ConsumerStatefulWidget {
@@ -18,11 +16,19 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 ///
-class ProductsScreenState extends ConsumerState<HomeScreen> {
+class ProductsScreenState extends ConsumerState<HomeScreen>
+    with AutomaticKeepAliveClientMixin {
   int pageindex = 0;
-  List<Widget> pages = <Widget>[const WifiHomePage(), const SavedTagsScreen()];
+  List<Widget> pages = <Widget>[
+    const AvailableTagsScreen(),
+    const SavedTagsScreen()
+  ];
+
   @override
   Widget build(BuildContext context) {
+    // init notifier
+    ref.read(tagsNotifiierProvider);
+
     return Scaffold(
       backgroundColor: context.colorScheme.surface,
       bottomNavigationBar: BottomNavigationBar(
@@ -44,4 +50,7 @@ class ProductsScreenState extends ConsumerState<HomeScreen> {
       body: pages[pageindex],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

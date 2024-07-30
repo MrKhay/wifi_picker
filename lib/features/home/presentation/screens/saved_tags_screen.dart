@@ -52,11 +52,7 @@ class _SavedTagsScreenState extends ConsumerState<SavedTagsScreen> {
   Widget _tagTile() {
     final NavigatorState navigator = Navigator.of(context);
     return GestureDetector(
-      onTap: () {
-        navigator.push(MaterialPageRoute(
-          builder: (BuildContext context) => const Writenfc(),
-        ));
-      },
+      onTap: () {},
       child: Container(
         padding:
             const EdgeInsets.symmetric(horizontal: kGap_2, vertical: kGap_2),
