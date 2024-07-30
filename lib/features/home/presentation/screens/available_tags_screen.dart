@@ -47,7 +47,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
       } else {
         if (mounted) {
           setState(() {
-            supportsNfc = false;
+            // supportsNfc = false;
           });
         }
       }
@@ -82,13 +82,13 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
         //   IconButton(
         //       onPressed: () {
         //         ref.read(tagsNotifiierProvider.notifier).addTag(
-        //             const NfcTag(handle: 'n', data: <String, dynamic>{}));
+        //             const NfcTag(handle: '345 Tag', data: <String, dynamic>{}));
         //       },
         //       icon: const Icon(Icons.abc))
         // ],
         title: kAvaliableTags,
         centerTitle: true,
-        style: context.textTheme.titleLarge?.copyWith(
+        style: context.textTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.w500,
         ),
       ),
@@ -143,80 +143,83 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
       ),
       trailing: Icon(
         Icons.wifi,
-        color: context.colorScheme.outline,
+        color: context.colorScheme.primary,
       ),
     );
   }
 
   Widget _searchingForTagWIg() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(kGap_3),
-          clipBehavior: Clip.antiAlias,
-          decoration: ShapeDecoration(
-            color: context.colorScheme.surfaceContainerHighest,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(kGap_2),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  SvgPicture.asset(
-                    'assets/svgs/wifi_signal.svg',
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    'Wi-fi Picker',
-                    style: context.textTheme.bodyLarge,
-                  ),
-                ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(kGap_3),
+            margin: const EdgeInsets.all(kGap_2),
+            clipBehavior: Clip.antiAlias,
+            decoration: ShapeDecoration(
+              color: Colors.grey.withOpacity(0.2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(kGap_2),
               ),
-              const SizedBox(height: kGap_3),
-              Center(
-                  child: Text(
-                'Currently searching for available Tag!',
-                textAlign: TextAlign.center,
-                style: context.textTheme.bodyMedium
-                    ?.copyWith(letterSpacing: kGap_01),
-              )),
-              const SizedBox(height: kGap_3),
-              Center(
-                child: Stack(
-                  alignment: Alignment.center,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
                   children: <Widget>[
-                    const SpinKitPulse(
-                      duration: Durations.extralong4,
-                      color: Color(0xFF5DB075),
-                      size: 400,
+                    SvgPicture.asset(
+                      'assets/svgs/wifi_signal.svg',
                     ),
-                    Container(
-                      height: 100,
-                      width: 100,
-                      padding: const EdgeInsets.all(15),
-                      decoration: const ShapeDecoration(
-                        color: Color(0xFF5DB075),
-                        shape: CircleBorder(),
-                      ),
-                      child: SvgPicture.asset(
-                        'assets/svgs/search_wifi.svg',
-                        width: 46,
-                        height: 55,
-                      ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Wi-fi Picker',
+                      style: context.textTheme.bodyLarge,
                     ),
                   ],
                 ),
-              ),
-            ],
+                const SizedBox(height: kGap_3),
+                Center(
+                    child: Text(
+                  'Currently searching for available Tag!',
+                  textAlign: TextAlign.center,
+                  style: context.textTheme.bodyMedium
+                      ?.copyWith(letterSpacing: kGap_01),
+                )),
+                Center(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      const SpinKitPulse(
+                        duration: Durations.extralong4,
+                        color: Color(0xFF5DB075),
+                        size: 400,
+                      ),
+                      Container(
+                        height: 100,
+                        width: 100,
+                        padding: const EdgeInsets.all(15),
+                        decoration: const ShapeDecoration(
+                          color: Color(0xFF5DB075),
+                          shape: CircleBorder(),
+                        ),
+                        child: SvgPicture.asset(
+                          'assets/svgs/search_wifi.svg',
+                          width: 46,
+                          height: 55,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -229,7 +232,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
           padding: const EdgeInsets.all(kGap_3),
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
-            color: context.colorScheme.surfaceContainer,
+            color: Colors.grey.withOpacity(0.2),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(kGap_2),
             ),

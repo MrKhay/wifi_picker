@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs
 
-const String kAppName = 'WIFI Picker';
+const String kAppName = 'WI-FI Picker';
 const String kAvaliableTags = 'Available Tags';
 const String kSavedTags = 'Saved Tags';
 const String kWifiDetails = 'Wifi Details';
