@@ -16,14 +16,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 ///
-class ProductsScreenState extends ConsumerState<HomeScreen>
-    with AutomaticKeepAliveClientMixin {
-  int pageindex = 0;
-  List<Widget> pages = <Widget>[
-    const AvailableTagsScreen(),
-    const SavedTagsScreen()
-  ];
-
+class ProductsScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     // init notifier
@@ -31,26 +24,7 @@ class ProductsScreenState extends ConsumerState<HomeScreen>
 
     return Scaffold(
       backgroundColor: context.colorScheme.surface,
-      bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.green,
-          selectedItemColor: context.colorScheme.surface,
-          unselectedItemColor: context.colorScheme.primaryContainer,
-          currentIndex: pageindex,
-          onTap: (int index) {
-            setState(() {
-              pageindex = index;
-            });
-          },
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.bookmark_outline_rounded), label: 'Saved'),
-          ]),
-      body: pages[pageindex],
+      body: const AvailableTagsScreen(),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

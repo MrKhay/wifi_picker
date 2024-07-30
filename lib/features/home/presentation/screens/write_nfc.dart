@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nfc_manager/nfc_manager.dart';
+import 'package:wifi_scan/wifi_scan.dart';
 
 import '../../../features.dart';
 import '../widgets/button_widget.dart';
@@ -93,6 +94,13 @@ class _WriteNfcState extends State<WriteNfc> {
         context: context,
         centerTitle: true,
         title: kWifiDetails,
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                _showWifiNetworks(context);
+              },
+              icon: const Icon(Icons.wifi_find))
+        ],
         style: context.textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.w500,
         ),
@@ -188,6 +196,21 @@ class _WriteNfcState extends State<WriteNfc> {
           ),
         ),
       ),
+    );
+  }
+
+  void _showWifiNetworks(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return AvaliableWifiWiget(
+          onNetworkSelected: (WiFiAccessPoint network) {
+            nameController.text = network.ssid;
+          },
+        );
+      },
     );
   }
 }

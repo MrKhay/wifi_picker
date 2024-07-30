@@ -78,14 +78,14 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
     return Scaffold(
       appBar: appBar(
         context: context,
-        actions: <Widget>[
-          IconButton(
-              onPressed: () {
-                ref.read(tagsNotifiierProvider.notifier).addTag(
-                    const NfcTag(handle: 'n', data: <String, dynamic>{}));
-              },
-              icon: const Icon(Icons.abc))
-        ],
+        // actions: <Widget>[
+        //   IconButton(
+        //       onPressed: () {
+        //         ref.read(tagsNotifiierProvider.notifier).addTag(
+        //             const NfcTag(handle: 'n', data: <String, dynamic>{}));
+        //       },
+        //       icon: const Icon(Icons.abc))
+        // ],
         title: kAvaliableTags,
         centerTitle: true,
         style: context.textTheme.titleLarge?.copyWith(

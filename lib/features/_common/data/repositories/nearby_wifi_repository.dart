@@ -1,5 +1,6 @@
 // ignore_for_file: always_specify_types
 
+import 'package:flutter/cupertino.dart';
 import 'package:wifi_scan/wifi_scan.dart';
 
 import '../../common.dart';
@@ -13,9 +14,11 @@ class NearbyWifiRepository {
     _wiFiScan = WiFiScan.instance;
   }
 
+  ///
   Future<CustomResponse<List<WiFiAccessPoint>>> startScan() async {
     // check platform support and necessary requirements
     final CanStartScan can = await _wiFiScan.canStartScan(askPermissions: true);
+    debugPrint('VAlue: $can');
     switch (can) {
       case CanStartScan.yes:
         // start full scan async-ly
