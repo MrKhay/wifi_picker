@@ -47,7 +47,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
       } else {
         if (mounted) {
           setState(() {
-            supportsNfc = false;
+            // supportsNfc = false;
           });
         }
       }
@@ -78,14 +78,14 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
     return Scaffold(
       appBar: appBar(
         context: context,
-        // actions: <Widget>[
-        //   IconButton(
-        //       onPressed: () {
-        //         ref.read(tagsNotifiierProvider.notifier).addTag(
-        //             const NfcTag(handle: '345 Tag', data: <String, dynamic>{}));
-        //       },
-        //       icon: const Icon(Icons.abc))
-        // ],
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                ref.read(tagsNotifiierProvider.notifier).addTag(
+                    const NfcTag(handle: '345 Tag', data: <String, dynamic>{}));
+              },
+              icon: const Icon(Icons.add))
+        ],
         title: kAvaliableTags,
         centerTitle: true,
         style: context.textTheme.titleMedium?.copyWith(
@@ -194,18 +194,18 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
                   child: Stack(
                     alignment: Alignment.center,
                     children: <Widget>[
-                      const SpinKitPulse(
+                      SpinKitPulse(
                         duration: Durations.extralong4,
-                        color: Color(0xFF5DB075),
+                        color: context.colorScheme.primary,
                         size: 400,
                       ),
                       Container(
                         height: 100,
                         width: 100,
                         padding: const EdgeInsets.all(15),
-                        decoration: const ShapeDecoration(
-                          color: Color(0xFF5DB075),
-                          shape: CircleBorder(),
+                        decoration: ShapeDecoration(
+                          color: context.colorScheme.primary,
+                          shape: const CircleBorder(),
                         ),
                         child: SvgPicture.asset(
                           'assets/svgs/search_wifi.svg',
