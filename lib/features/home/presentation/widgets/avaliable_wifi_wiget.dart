@@ -98,6 +98,6 @@ class AvaliableWifiWigetState extends State<AvaliableWifiWiget> {
           Icons.wifi,
           color: context.colorScheme.primary,
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: kGap_2),
+        contentPadding: const EdgeInsets.symmetric(horizontal: kGap_1),
       );
 }

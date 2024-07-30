@@ -157,7 +157,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
           Container(
             alignment: Alignment.center,
             padding: const EdgeInsets.all(kGap_3),
-            margin: const EdgeInsets.all(kGap_2),
+            margin: const EdgeInsets.all(kGap_1),
             clipBehavior: Clip.antiAlias,
             decoration: ShapeDecoration(
               color: Colors.grey.withOpacity(0.2),
