@@ -4,17 +4,6 @@
 
 The NFC WiFi Sharing App that simplifies the process of sharing WiFi credentials. Users can effortlessly connect to WIFI networks by tapping their NFC-enabled devices against a designated NFC tag.
 
-## Commit Convention
-
-Conventional Commits is a specification for adding human and machine-readable meaning to commit messages. The format is:
-
-```bash
-<type>[optional scope]: <description>
-
-[optional body]
-
-[optional footer(s)]
-```
 
 ### Types
 
@@ -40,7 +29,7 @@ Conventional Commits is a specification for adding human and machine-readable me
 
 ## Acceptance Criteria
 
-- **No Third-party Dependencies**: Built without importing any third-party packages, plugins, or libraries. Only native functionalities and components are used.
+- **Few Third-party Dependencies**: Built with importing third-party packages, plugins, or libraries. And native functionalities and components are used also.
 - **Intuitive and Adaptive UI**: User-friendly and intuitive interface, with clear labeling, easy navigation, and proper spacing.
 - **Proper README File**: Contains setup instructions, app screenshots, apk download link, etc.
 
