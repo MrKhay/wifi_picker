@@ -34,6 +34,10 @@ The NFC WiFi Sharing App that simplifies the process of sharing WiFi credentials
 
 ## Screenshots
 
+| Home Screen | Write to NFC Screen | Available NFC Screen |
+|-------------|---------------------|----------------------|
+| ![Home Screen](screenshots/home_screen.png) | ![Write to NFC Screen](screenshots/write_to_tag_screen.png) | ![Available NFC Screen](screenshots/avaliable_tag_screen.png) |
+
 ## Setup Instructions
 
 1. clone the repository
@@ -43,7 +47,7 @@ The NFC WiFi Sharing App that simplifies the process of sharing WiFi credentials
   cd wifi_picker
   ```
 
-2.. Open the project in your chosen development environment (e.g., Android Studio for Android, Xcode for iOS).
+2. Open the project in your chosen development environment (e.g., Android Studio for Android, Xcode for iOS).
 
 3. Run "flutter pub get" to add the dependencies.
 
