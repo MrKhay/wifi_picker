@@ -89,7 +89,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
         title: kAvaliableTags,
         centerTitle: true,
         style: context.textTheme.titleMedium?.copyWith(
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w600,
         ),
       ),
       backgroundColor: Colors.white,
@@ -177,7 +177,8 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
                     const SizedBox(width: 8),
                     Text(
                       'Wi-fi Picker',
-                      style: context.textTheme.bodyLarge,
+                      style: context.textTheme.bodyLarge
+                          ?.copyWith(letterSpacing: kGap_00),
                     ),
                   ],
                 ),
@@ -187,7 +188,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
                   'Currently searching for available Tag!',
                   textAlign: TextAlign.center,
                   style: context.textTheme.bodyMedium
-                      ?.copyWith(letterSpacing: kGap_01),
+                      ?.copyWith(letterSpacing: kGap_00),
                 )),
                 const SizedBox(height: kGap_3),
                 Center(

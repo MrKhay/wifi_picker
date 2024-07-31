@@ -8,6 +8,6 @@ ThemeData lightTheme = ThemeData(
     surface: const Color.fromARGB(255, 255, 255, 255),
     error: const Color.fromARGB(255, 250, 0, 25),
   ),
-  fontFamily: GoogleFonts.notoSans().fontFamily,
+  fontFamily: 'SF Pro',
   useMaterial3: true,
 );
