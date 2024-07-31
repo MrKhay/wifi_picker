@@ -71,21 +71,31 @@ class _WriteNfcState extends State<WriteNfc> {
 
       try {
         // Start the NFC session
+        await NfcManager.instance.startSession(
+            onDiscovered: (NfcTag tag) async {
+          try {
+            final Ndef? ndef = Ndef.from(tag);
 
-        // Write to the NFC tag
-        final Ndef? ndef = Ndef.from(widget.tag);
+            if (ndef == null || !ndef.isWritable) {
+              context.showSnackBar('Tag is not compatible',
+                  type: SnackBarType.error);
+              return;
+            }
 
-        if (ndef == null || !ndef.isWritable) {
-          context.showSnackBar('Tag is not compatible',
-              type: SnackBarType.error);
-          return;
-        }
-        await ndef.write(ndefMessage);
-        showSuccessBox(context);
-        triggerVibration();
+            // Write to the NFC tag
+            await ndef.write(ndefMessage);
+            context.showSnackBar('Successfully written to NFC tag',
+                type: SnackBarType.success);
+            triggerVibration();
+          } catch (e) {
+            context.showSnackBar('Error writing to NFC tag: $e',
+                type: SnackBarType.error);
+          } finally {
+            // unawaited(NfcManager.instance.stopSession());
+          }
+        });
       } catch (e) {
-        // Handle the error
-        context.showSnackBar('Error writing to NFC tag: $e',
+        context.showSnackBar('Error starting NFC session: $e',
             type: SnackBarType.error);
       }
     }
