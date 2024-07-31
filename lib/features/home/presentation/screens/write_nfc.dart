@@ -1,5 +1,8 @@
 // ignore_for_file: inference_failure_on_function_invocation, public_member_api_docs
 
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nfc_manager/nfc_manager.dart';
@@ -71,6 +74,7 @@ class _WriteNfcState extends State<WriteNfc> {
 
         // Write to the NFC tag
         final Ndef? ndef = Ndef.from(widget.tag);
+
         if (ndef == null || !ndef.isWritable) {
           context.showSnackBar('Tag is not compatible',
               type: SnackBarType.error);
@@ -89,12 +93,21 @@ class _WriteNfcState extends State<WriteNfc> {
 
   @override
   void initState() {
-    if (widget.tag.data.isNotEmpty) {
-      nfcData = NfcData.fromMap(widget.tag.data);
-      nameController.text = nfcData?.name ?? '';
-      passwordController.text = nfcData?.password ?? '';
-      securityType = nfcData?.security ?? '';
+    final Ndef? ndef = Ndef.from(widget.tag);
+
+    if (ndef != null) {
+      unawaited(ndef.read().then((NdefMessage value) {
+        if (value.records.isNotEmpty) {
+          final NdefRecord data = value.records.first;
+
+          final NfcData? nfcData = parseWiFiPayload(utf8.decode(data.payload));
+          nameController.text = nfcData?.name ?? '';
+          passwordController.text = nfcData?.password ?? '';
+          securityType = nfcData?.security ?? '';
+        }
+      }));
     }
+
     super.initState();
   }
 
