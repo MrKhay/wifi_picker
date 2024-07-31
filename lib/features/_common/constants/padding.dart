@@ -1,3 +1,4 @@
+const double kGap_00 = 0.05;
 const double kGap_01 = 2.0;
 const double kGap_0 = 4.0;
 const double kGap_1 = 8.0;

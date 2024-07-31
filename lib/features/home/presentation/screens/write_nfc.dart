@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:nfc_manager/nfc_manager.dart';
 import 'package:wifi_scan/wifi_scan.dart';
 
+import '../../../_common/domain/models/nfc_data.dart';
 import '../../../features.dart';
 import '../widgets/button_widget.dart';
 
@@ -20,7 +21,8 @@ class _WriteNfcState extends State<WriteNfc> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  String? securityType;
+  NfcData? nfcData;
+  String? securityType = 'WEP';
 
   void showSuccessBox(BuildContext context) {
     showDialog(
@@ -29,7 +31,9 @@ class _WriteNfcState extends State<WriteNfc> {
         return AlertDialog(
           title: const CircleAvatar(
             backgroundColor: Colors.lightGreen,
-            child: Icon(Icons.wifi),
+            child: Icon(
+              Icons.wifi,
+            ),
           ),
           content: const Text('Data successfully written to tag'),
           actions: <Widget>[
@@ -49,6 +53,7 @@ class _WriteNfcState extends State<WriteNfc> {
   }
 
   Future<void> writeWifiCredentials() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     if (_formKey.currentState?.validate() ?? false) {
       final String ssid = nameController.text;
       final String password = passwordController.text;
@@ -82,6 +87,17 @@ class _WriteNfcState extends State<WriteNfc> {
     }
   }
 
+  @override
+  void initState() {
+    if (widget.tag.data.isNotEmpty) {
+      nfcData = NfcData.fromMap(widget.tag.data);
+      nameController.text = nfcData?.name ?? '';
+      passwordController.text = nfcData?.password ?? '';
+      securityType = nfcData?.security ?? '';
+    }
+    super.initState();
+  }
+
   void triggerVibration() {
     HapticFeedback.lightImpact();
   }
@@ -99,16 +115,20 @@ class _WriteNfcState extends State<WriteNfc> {
               onPressed: () {
                 _showWifiNetworks(context);
               },
-              icon: const Icon(Icons.wifi_find))
+              icon: Icon(
+                Icons.wifi_find,
+                color: context.colorScheme.primary,
+              ))
         ],
-        style: context.textTheme.titleLarge?.copyWith(
+        style: context.textTheme.titleMedium?.copyWith(
           fontWeight: FontWeight.w500,
         ),
       ),
       backgroundColor: context.colorScheme.surface,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(15, 40, 15, 5),
+          padding:
+              const EdgeInsets.symmetric(horizontal: kGap_3, vertical: kGap_3),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -134,14 +154,14 @@ class _WriteNfcState extends State<WriteNfc> {
                         );
                       }).toList(),
                       decoration: const InputDecoration(
-                        hintText: 'Select WiFi security type',
+                        hintText: 'Select Wi-Fi security type',
                         hintStyle: TextStyle(color: Colors.grey),
                         border: OutlineInputBorder(),
                         enabledBorder: OutlineInputBorder(),
                       ),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please select WiFi security type';
+                          return 'Please select Wi-Fi security type';
                         }
                         return null;
                       },
@@ -152,14 +172,14 @@ class _WriteNfcState extends State<WriteNfc> {
                     TextFormField(
                       controller: nameController,
                       decoration: const InputDecoration(
-                        hintText: 'Enter WiFi name',
+                        hintText: 'Enter Wi-Fi name',
                         hintStyle: TextStyle(color: Colors.grey),
                         border: OutlineInputBorder(),
                         enabledBorder: OutlineInputBorder(),
                       ),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter WiFi name';
+                          return 'Please enter Wi-Fi name';
                         }
                         return null;
                       },
@@ -170,14 +190,14 @@ class _WriteNfcState extends State<WriteNfc> {
                     TextFormField(
                       controller: passwordController,
                       decoration: const InputDecoration(
-                        hintText: 'Enter WiFi password',
+                        hintText: 'Enter Wi-Fi password',
                         hintStyle: TextStyle(color: Colors.grey),
                         border: OutlineInputBorder(),
                         enabledBorder: OutlineInputBorder(),
                       ),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter WiFi password';
+                          return 'Please enter Wi-Fi password';
                         }
                         return null;
                       },
@@ -189,7 +209,7 @@ class _WriteNfcState extends State<WriteNfc> {
               Button(
                 onTap: writeWifiCredentials,
                 width: MediaQuery.of(context).size.width,
-                height: 50,
+                height: kGap_5 - 10,
                 text: 'Save',
               ),
             ],

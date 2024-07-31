@@ -27,6 +27,12 @@ class AvaliableWifiWigetState extends State<AvaliableWifiWiget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: context.colorScheme.surface,
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(kGap_3),
+            topRight: Radius.circular(kGap_3)),
+      ),
       padding: const EdgeInsets.symmetric(horizontal: kGap_2, vertical: kGap_1),
       height: context.screenSize.height * 0.5,
       child: FutureBuilder<CustomResponse<List<WiFiAccessPoint>>>(
@@ -88,7 +94,10 @@ class AvaliableWifiWigetState extends State<AvaliableWifiWiget> {
         enableFeedback: true,
         shape: ContinuousRectangleBorder(
             borderRadius: BorderRadius.circular(kGap_3)),
-        trailing: const Icon(Icons.wifi),
-        contentPadding: const EdgeInsets.symmetric(horizontal: kGap_2),
+        trailing: Icon(
+          Icons.wifi,
+          color: context.colorScheme.primary,
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: kGap_1),
       );
 }

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../_common/extensions/extensions.dart';
 import 'text_font.dart';
 
 class Button extends StatelessWidget {
@@ -20,23 +21,16 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Container(
-          height: height,
-          decoration: BoxDecoration(
-              color: Colors.green, borderRadius: BorderRadius.circular(10)),
-          width: width,
-          child: Center(
-            child: Text(
-              text,
-              style: textfont(
-                15,
-                FontWeight.normal,
-                Colors.white,
-              ),
-            ),
-          ),
+      child: Container(
+        height: height,
+        decoration: BoxDecoration(
+            color: context.colorScheme.primary,
+            borderRadius: BorderRadius.circular(10)),
+        width: width,
+        child: Center(
+          child: Text(text,
+              style: context.textTheme.bodyLarge
+                  ?.copyWith(color: context.colorScheme.surface)),
         ),
       ),
     );

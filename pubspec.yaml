@@ -42,5 +42,10 @@ flutter:
     - assets/images/
     - assets/svgs/
     - 'assets/splash.json'
+
+  fonts:
+    - family: SF Pro
+      fonts:
+        - asset: assets/fonts/SF-Pro-Text-Medium.otf
   
   
