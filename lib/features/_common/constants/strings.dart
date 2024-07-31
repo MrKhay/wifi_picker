@@ -3,7 +3,7 @@
 const String kAppName = 'WI-FI Picker';
 const String kAvaliableTags = 'Available Tags';
 const String kSavedTags = 'Saved Tags';
-const String kWifiDetails = 'WI-FI Details';
+const String kWifiDetails = 'Wi-fi Details';
 const String kNoInternetAccess = 'No internet access';
 
 const String kNoInternetAccessInfo = 'Please check your network connection.';

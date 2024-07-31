@@ -88,7 +88,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
         title: kAvaliableTags,
         centerTitle: true,
         style: context.textTheme.titleMedium?.copyWith(
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w700,
         ),
       ),
       backgroundColor: Colors.white,

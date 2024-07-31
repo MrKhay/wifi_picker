@@ -121,7 +121,7 @@ class _WriteNfcState extends State<WriteNfc> {
               ))
         ],
         style: context.textTheme.titleMedium?.copyWith(
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w700,
         ),
       ),
       backgroundColor: context.colorScheme.surface,
