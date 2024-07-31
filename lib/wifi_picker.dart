@@ -16,7 +16,7 @@ class WifiPickerApp extends StatelessWidget {
       title: kAppName,
       themeMode: ThemeMode.system,
       theme: lightTheme,
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
