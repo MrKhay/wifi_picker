@@ -4,7 +4,6 @@
 
 The NFC WiFi Sharing App that simplifies the process of sharing WiFi credentials. Users can effortlessly connect to WIFI networks by tapping their NFC-enabled devices against a designated NFC tag.
 
-
 ### Types
 
 - feat: A new feature
@@ -39,29 +38,32 @@ The NFC WiFi Sharing App that simplifies the process of sharing WiFi credentials
 
 1. clone the repository
 
-   git clone https://github.com/MrKhay/wifi_picker.git
+  ```sh
+  git clone https://github.com/MrKhay/wifi_picker.git
   cd wifi_picker
+  ```
 
 2.. Open the project in your chosen development environment (e.g., Android Studio for Android, Xcode for iOS).
 
 3. Run "flutter pub get" to add the dependencies.
-   
+
 4. Build and run the app on an emulator or physical device
 
 ## Apk download link
 
-https://drive.google.com/file/d/1EKfPiJWm1MHR_URFlmmS5ggDvdQluhdR/view?usp=sharing
+Download the APK file from [here](https://drive.google.com/file/d/1EKfPiJWm1MHR_URFlmmS5ggDvdQluhdR/view?usp=sharing).
 
-## Figma Design link
+## Design link
 
-https://www.figma.com/design/OHBFIlhLXu4pavGyxgmW65/NFC-APP?node-id=0-1&t=Pcf319vF21On8t8Z-1
+Figma design link [here](hhttps://www.figma.com/design/OHBFIlhLXu4pavGyxgmW65/NFC-APP?node-id=0-1&t=Pcf319vF21On8t8Z-1).
 
 ## Product Requirements document link
 
-https://docs.google.com/document/d/1KJtT_PzrQ7ePwSvwy2PsrI7viNrrgFf1cv8OnRPDUxg/edit?usp=drivesdk
+Pwd and User Flow [Link](https://docs.google.com/document/d/1KJtT_PzrQ7ePwSvwy2PsrI7viNrrgFf1cv8OnRPDUxg/edit?usp=drivesdk)
 
 ## Contributors
 
-1. Mr khay (Team lead)
-2. Phillip
-3. Dre
+1. [Mr khay](https://github.com/MrKhay) (Team lead)
+2. [Phillip](https://github.com/Phillip4reall)
+3. [Dre](https://github.com/Drebaba1)
+4. [Dhikrullah](https://github.com/Aradhik11)
