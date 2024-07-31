@@ -47,9 +47,6 @@ Conventional Commits is a specification for adding human and machine-readable me
 ## Screenshots
 ![7d7d5587-9db0-4cbb-bb07-dcc56a619a2e](https://github.com/user-attachments/assets/88e12334-5f7d-4c6f-8cc8-4a2fa02fec5b)
 
-![565f3af5-af62-47a1-9448-5fa446495696](https://github.com/user-attachments/assets/c821b9a6-b7b9-4720-b9a5-558a364ab389)
-![25f2429b-93f9-445b-8a42-6a1cb495c805](https://github.com/user-attachments/assets/3d6394d2-7bb6-4370-bd36-321562bf0236)
-
 ## Setup Instructions
 
 1. clone the repository
@@ -75,9 +72,9 @@ https://docs.google.com/document/d/1KJtT_PzrQ7ePwSvwy2PsrI7viNrrgFf1cv8OnRPDUxg/
 
 ## Contributors
 
- Mr khay (Team lead)
- Phillip
- Dre
+ 1. Mr khay (Team lead)
+2.  Phillip
+3. Dre
 
 ## License
 
