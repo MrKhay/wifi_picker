@@ -45,7 +45,6 @@ Conventional Commits is a specification for adding human and machine-readable me
 - **Proper README File**: Contains setup instructions, app screenshots, apk download link, etc.
 
 ## Screenshots
-![7d7d5587-9db0-4cbb-bb07-dcc56a619a2e](https://github.com/user-attachments/assets/88e12334-5f7d-4c6f-8cc8-4a2fa02fec5b)
 
 ## Setup Instructions
 
@@ -55,7 +54,9 @@ Conventional Commits is a specification for adding human and machine-readable me
   cd wifi_picker
 
 2.. Open the project in your chosen development environment (e.g., Android Studio for Android, Xcode for iOS).
+
 3. Run "flutter pub get" to add the dependencies.
+   
 4. Build and run the app on an emulator or physical device
 
 ## Apk download link
