@@ -21,17 +21,14 @@ class AvailableTagsScreen extends ConsumerStatefulWidget {
 
 class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
   late NfcRepository nfcRepository;
-  late NfcManager nfcManager;
   // true when device supports nfc
   bool supportsNfc = true;
 
   @override
   void initState() {
     super.initState();
-    nfcManager = NfcManager.instance;
 
     nfcRepository = NfcRepository(
-      nfcManager: nfcManager,
       onDiscovered: onDiscovered,
       onError: onError,
     );

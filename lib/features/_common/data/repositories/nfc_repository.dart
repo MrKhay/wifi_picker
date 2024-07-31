@@ -3,20 +3,18 @@ import 'package:nfc_manager/nfc_manager.dart';
 
 class NfcRepository {
   ///
-  final NfcManager nfcManager;
   void Function(NfcTag tag) onDiscovered;
   void Function(String error) onError;
 
   ///
   NfcRepository({
-    required this.nfcManager,
     required this.onDiscovered,
     required this.onError,
   });
 
   /// Returns true if supports nfc and false if not
   Future<bool> supportsNfc() async {
-    return nfcManager.isAvailable();
+    return NfcManager.instance.isAvailable();
   }
 
   Future<void> startSession() async {
@@ -33,6 +31,6 @@ class NfcRepository {
 
   Future<void> stopSession() async {
     // Stop Session
-    await nfcManager.stopSession();
+    await NfcManager.instance.stopSession();
   }
 }
