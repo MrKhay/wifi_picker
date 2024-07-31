@@ -47,7 +47,7 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
       } else {
         if (mounted) {
           setState(() {
-            // supportsNfc = false;
+            supportsNfc = false;
           });
         }
       }
@@ -78,18 +78,18 @@ class _AvailableTagsState extends ConsumerState<AvailableTagsScreen> {
     return Scaffold(
       appBar: appBar(
         context: context,
-        actions: <Widget>[
-          IconButton(
-              onPressed: () {
-                ref.read(tagsNotifiierProvider.notifier).addTag(
-                    const NfcTag(handle: '345 Tag', data: <String, dynamic>{}));
-              },
-              icon: const Icon(Icons.add))
-        ],
+        // actions: <Widget>[
+        //   IconButton(
+        //       onPressed: () {
+        //         ref.read(tagsNotifiierProvider.notifier).addTag(
+        //             const NfcTag(handle: '345 Tag', data: <String, dynamic>{}));
+        //       },
+        //       icon: const Icon(Icons.add))
+        // ],
         title: kAvaliableTags,
         centerTitle: true,
         style: context.textTheme.titleMedium?.copyWith(
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w700,
         ),
       ),
       backgroundColor: Colors.white,

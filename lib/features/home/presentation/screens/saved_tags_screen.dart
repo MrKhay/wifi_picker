@@ -22,8 +22,8 @@ class _SavedTagsScreenState extends ConsumerState<SavedTagsScreen> {
         context: context,
         title: kSavedTags,
         centerTitle: true,
-        style: context.textTheme.titleLarge?.copyWith(
-          fontWeight: FontWeight.w500,
+        style: context.textTheme.titleMedium?.copyWith(
+          fontWeight: FontWeight.w700,
         ),
       ),
       backgroundColor: Colors.white,
